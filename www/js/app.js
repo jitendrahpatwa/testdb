@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic','ngCordova']);
 var db = null;
-app.run(function($ionicPlatform, $cordovaSQLite) {
+app.run(function($ionicPlatform, $cordovaSQLite,serviceDB) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,12 +18,13 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
         //db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
         db = window.sqlitePlugin.openDatabase({name: 'accounts.db', location: 'default'});
     }*/ 
-    db = window.openDatabase("accounts.db", "1", "Demo SQLite Test", "2000");
+    /*db = window.openDatabase("accounts.db", "1", "Demo SQLite Test", "2000");
 
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS chat_channel(id interger primary key, chat_room text, last_text text, username text, chat_channel text unique)");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS chat_content(id integer primary key, content text, channel text, chat_flag integer, username text, date timestamp)");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
-    
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");*/
+    serviceDB.init($cordovaSQLite);
+
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
