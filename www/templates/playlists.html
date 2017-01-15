@@ -1,7 +1,7 @@
 <ion-view view-title="Playlists">
   <ion-content>
-   <button ng-click="insert()">insert</button>
-   <button ng-click="select()"> select</button>
+   <button ng-click="insert('abc','xyz')">insert</button>
+   <button ng-click="select('xyz')"> select</button>
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
