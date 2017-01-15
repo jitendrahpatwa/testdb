@@ -10,8 +10,13 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    db = $cordovaSQLite.openDB("my.db");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+    /*db = $cordovaSQLite.openDB("my.db");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");*/
+    if (window.cordova || window.SQLitePlugin) {
+        db = $cordovaSQLite.openDB( 'accounts.db', 1 );
+    } else {
+        db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
+    }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
