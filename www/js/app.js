@@ -15,7 +15,8 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     if (window.cordova || window.SQLitePlugin) {
         db = $cordovaSQLite.openDB( 'accounts.db', 1 );
     } else {
-        db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
+        //db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
+        db = window.sqlitePlugin.openDatabase({name: 'accounts.db', location: 'default'});
     }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
