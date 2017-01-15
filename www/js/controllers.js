@@ -42,6 +42,26 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 app.controller('PlaylistsCtrl', function($scope, $cordovaSQLite) {
+  $timeout(function() {
+      alert(window.sqlitePlugin);
+    }, 1000);
+
+    $timeout(function() {
+      alert(window.sqlitePlugin);
+    }, 2000);
+
+    $timeout(function() {
+      alert(window.sqlitePlugin);
+    }, 3000);
+
+    $timeout(function() {
+      alert(window.sqlitePlugin);
+    }, 4000);
+
+    $timeout(function() {
+      alert(window.sqlitePlugin);
+    }, 5000);
+
   $scope.insert = function(firstname, lastname) {
         var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
         $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
