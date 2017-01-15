@@ -12,12 +12,18 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     // for form inputs)
     /*db = $cordovaSQLite.openDB("my.db");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");*/
-    if (window.cordova || window.SQLitePlugin) {
+    /*if (window.cordova) {
         db = $cordovaSQLite.openDB( 'accounts.db', 1 );
     } else {
         //db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
         db = window.sqlitePlugin.openDatabase({name: 'accounts.db', location: 'default'});
-    }
+    }*/ 
+    db = window.openDatabase("accounts.db", "1", "Demo SQLite Test", "2000");
+
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS chat_channel(id interger primary key, chat_room text, last_text text, username text, chat_channel text unique)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS chat_content(id integer primary key, content text, channel text, chat_flag integer, username text, date timestamp)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+    
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
