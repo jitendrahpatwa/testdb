@@ -50,7 +50,7 @@ app.factory('serviceDB', function() {
 			      var long = position.coords.longitude;
 			      alert("lat:"+lat+" long:"+long);
 			  });
-		}
+		},
 		trackmylocation2:function(){
 			var posOptions = {timeout: 5000, enableHighAccuracy: false};
 			$cordovaGeolocation
