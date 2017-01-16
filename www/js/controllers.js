@@ -43,7 +43,12 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
 app.controller('PlaylistsCtrl', function($scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
   serviceDB.create($scope,$timeout,$cordovaSQLite);
-  serviceDB.trackmylocation($cordovaGeolocation);
+  $scope.geo1 = function(){
+    serviceDB.trackmylocation($cordovaGeolocation);
+  }
+  $scope.geo2 = function(){
+    serviceDB.trackmylocation2($cordovaGeolocation);
+  }
   /*$timeout(function() {
       alert(window.sqlitePlugin);
     }, 1000);

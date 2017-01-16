@@ -43,13 +43,25 @@ app.factory('serviceDB', function() {
 			    null,
 			    function(err) {
 			      // error
-			      alert("error:"+err);
+			      alert("error 1:"+JSON.stringify(err));
 			    },
 			    function(position) {
 			      var lat  = position.coords.latitude;
 			      var long = position.coords.longitude;
 			      alert("lat:"+lat+" long:"+long);
 			  });
+		}
+		trackmylocation2:function(){
+			var posOptions = {timeout: 5000, enableHighAccuracy: false};
+			$cordovaGeolocation
+		    .getCurrentPosition(posOptions)
+		    .then(function (position) {
+		      var lat  = position.coords.latitude;
+			      var long = position.coords.longitude;
+			      alert("lat:"+lat+" long:"+long);
+		    }, function(err) {
+		      alert("error 2:"+JSON.stringify(err));
+		    });
 		}
 	}
 });
