@@ -41,8 +41,9 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   };
 });
 
-app.controller('PlaylistsCtrl', function($scope,$timeout, $cordovaSQLite,serviceDB) {
+app.controller('PlaylistsCtrl', function($scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
   serviceDB.create($scope,$timeout,$cordovaSQLite);
+  serviceDB.trackmylocation($cordovaGeolocation);
   /*$timeout(function() {
       alert(window.sqlitePlugin);
     }, 1000);
