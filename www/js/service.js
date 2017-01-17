@@ -1,5 +1,33 @@
 app.factory('serviceDB', function() {
+	function onDeviceReady() {
+        console.log('in onDeviceReady()');
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
 
+    // onSuccess Geolocation
+    function onSuccess(position) {
+        console.log('in onSuccess()');
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+    }
+
+    // onError Callback receives a PositionError object
+    function onError(error) {
+        console.log('in onError()');
+        console.log(error.code);
+        console.log(error.message);
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
 	return {
 		init: function($cordovaSQLite){
 			db = window.openDatabase("besties.db", "1", "SQLite DB", "20000000");
@@ -52,16 +80,8 @@ app.factory('serviceDB', function() {
 			  });
 		},
 		trackmylocation2:function(){
-			var posOptions = {timeout: 5000, enableHighAccuracy: false};
-			$cordovaGeolocation
-		    .getCurrentPosition(posOptions)
-		    .then(function (position) {
-		      var lat  = position.coords.latitude;
-			      var long = position.coords.longitude;
-			      alert("lat:"+lat+" long:"+long);
-		    }, function(err) {
-		      alert("error 2:"+JSON.stringify(err));
-		    });
+			//document.addEventListener("deviceready", onDeviceReady, false);
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		}
 	}
 });
