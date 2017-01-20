@@ -41,8 +41,55 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   };
 });
 
-app.controller('PlaylistsCtrl', function($scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
+app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
+//imei
+window.plugins.imei.get(
+  function(imei) {
+    alert("got imei: " + imei);
+    console.log("got imei: " + imei);
+  },
+  function() {
+    alert("error loading imei");
+    console.log("error loading imei");
+  }
+);
+//sim
+window.plugins.sim.getSimInfo(successCallback, errorCallback);
+function successCallback(result) {
+  console.log(result);
+  alert(result);
+}
+ 
+function errorCallback(error) {
+  console.log(error);
+  alert(error);
+}
+ hasReadPermission();
+ requestReadPermission();
+// Android only: check permission 
+function hasReadPermission() {
+  window.plugins.sim.hasReadPermission(successCallback, errorCallback);
+}
+ 
+// Android only: request permission 
+function requestReadPermission() {
+  window.plugins.sim.requestReadPermission(successCallback, errorCallback);
+}
+
+
+
+
   serviceDB.create($scope,$timeout,$cordovaSQLite);
+  
+    var isOffline = 'onLine' in navigator && !navigator.onLine;
+
+if ( isOffline ) {
+    console.warn("cordovaNetwork is offline:"+isOffline);
+}
+else {
+    console.warn("cordovaNetwork is online:"+isOffline);
+}
+
   $scope.geo1 = function(){
     serviceDB.trackmylocation($cordovaGeolocation);
   }
