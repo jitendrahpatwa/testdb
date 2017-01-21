@@ -61,7 +61,7 @@ $scope.sim = function(){
 };
 function successCallback(result) {
   console.log(result);
-  alert(result);
+  alert(result.phoneNumber + " & "+JSON.stringify(result));
 }
  
 function errorCallback(error) {
