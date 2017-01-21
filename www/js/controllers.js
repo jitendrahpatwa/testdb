@@ -43,6 +43,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
 app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
 //imei
+$scope.imei = function(){
 window.plugins.imei.get(
   function(imei) {
     alert("got imei: " + imei);
@@ -53,8 +54,11 @@ window.plugins.imei.get(
     console.log("error loading imei");
   }
 );
+};
 //sim
-window.plugins.sim.getSimInfo(successCallback, errorCallback);
+$scope.sim = function(){
+  window.plugins.sim.getSimInfo(successCallback, errorCallback);
+};
 function successCallback(result) {
   console.log(result);
   alert(result);
@@ -64,8 +68,10 @@ function errorCallback(error) {
   console.log(error);
   alert(error);
 }
+$scope.permission = function(){
  hasReadPermission();
  requestReadPermission();
+};
 // Android only: check permission 
 function hasReadPermission() {
   window.plugins.sim.hasReadPermission(successCallback, errorCallback);
