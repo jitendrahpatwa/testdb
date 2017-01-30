@@ -43,7 +43,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
 app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
 //accuracy
-/*cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+cordova.plugins.locationAccuracy.canRequest(function(canRequest){
     if(canRequest){
         cordova.plugins.locationAccuracy.request(function(){
             console.log("Request successful");
@@ -64,7 +64,7 @@ app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$tim
         }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
         );
     }
-});*/
+});
 
 
 //imei
