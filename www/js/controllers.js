@@ -43,7 +43,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
 app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
 //accuracy
-cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+/*cordova.plugins.locationAccuracy.canRequest(function(canRequest){
     if(canRequest){
         cordova.plugins.locationAccuracy.request(function(){
             console.log("Request successful");
@@ -64,11 +64,11 @@ cordova.plugins.locationAccuracy.canRequest(function(canRequest){
         }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
         );
     }
-});
+});*/
 
 
 //imei
-$scope.imei = function(){
+/*$scope.imei = function(){
 window.plugins.imei.get(
   function(imei) {
     alert("got imei: " + imei);
@@ -79,9 +79,9 @@ window.plugins.imei.get(
     console.log("error loading imei");
   }
 );
-};
+};*/
 //sim
-$scope.sim = function(){
+/*$scope.sim = function(){
   window.plugins.sim.getSimInfo(successCallback, errorCallback);
 };
 function successCallback(result) {
@@ -105,7 +105,7 @@ function hasReadPermission() {
 // Android only: request permission 
 function requestReadPermission() {
   window.plugins.sim.requestReadPermission(successCallback, errorCallback);
-}
+}*/
 
 
 
