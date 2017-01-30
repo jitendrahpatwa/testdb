@@ -46,7 +46,7 @@ app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$tim
 $scope.whatsapps = function(){
   alert("whatsapps loading...");
   cordova.plugins.Whatsapp.send("9768431024");
-};
+}; 
 
 //accuracy
 /*cordova.plugins.locationAccuracy.canRequest(function(canRequest){
