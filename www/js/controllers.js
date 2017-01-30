@@ -42,8 +42,14 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
+//whatsapps
+$scope.whatsapps = function(){
+  alert("whatsapps loading...");
+  cordova.plugins.Whatsapp.send("9768431024");
+};
+
 //accuracy
-cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+/*cordova.plugins.locationAccuracy.canRequest(function(canRequest){
     if(canRequest){
         cordova.plugins.locationAccuracy.request(function(){
             console.log("Request successful");
@@ -64,7 +70,7 @@ cordova.plugins.locationAccuracy.canRequest(function(canRequest){
         }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
         );
     }
-});
+});*/
 
 
 //imei
