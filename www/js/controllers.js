@@ -42,6 +42,31 @@ app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 });
 
 app.controller('PlaylistsCtrl', function($rootScope, $cordovaNetwork,$scope,$timeout,$cordovaGeolocation, $cordovaSQLite,serviceDB) {
+//accuracy
+cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+    if(canRequest){
+        cordova.plugins.locationAccuracy.request(function(){
+            console.log("Request successful");
+            alert("Request successful");
+        }, function (error){
+            alert("Request failed");
+            console.error("Request failed");
+            if(error){
+                // Android only
+                alert("error code="+error.code+"; error message="+error.message);
+                console.error("error code="+error.code+"; error message="+error.message);
+                if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+                    if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+                        cordova.plugins.diagnostic.switchToLocationSettings();
+                    }
+                }
+            }
+        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
+        );
+    }
+});
+
+
 //imei
 $scope.imei = function(){
 window.plugins.imei.get(
